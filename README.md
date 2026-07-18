@@ -10,13 +10,14 @@ Standalone landing page for converting Google Ads traffic into COSA Core subscri
 
 ## How the offer works
 
-Every CTA links to the existing COSA Core checkout with the free-month promo pre-applied:
+Offer CTAs always include `code=FIRSTFREE`.
 
-```
-https://core.cosa.net.au/subscribe?plan={starter|growth|scale}&billing=monthly&code=FIRSTFREE
-```
+| Billing | What the customer gets |
+|---------|------------------------|
+| Monthly | First month free (Stripe coupon), then monthly price |
+| Yearly | First month free (30-day trial), then annual price = 11 × monthly |
 
-The `FIRSTFREE` code and Stripe coupon already exist in `cosa-core` — this page contains no billing logic.
+The page has a monthly/yearly toggle. Default is monthly (lower commitment for ads). Yearly is labelled best value.
 
 ## Develop
 
