@@ -148,7 +148,7 @@ function Header({ billingCycle }) {
   return (
     <header className="site-header">
       <a className="brand" href={MAIN_SITE_URL} aria-label="COSA home">
-        <img src={`${MAIN_SITE_URL}/cosa-wordmark.png`} alt="COSA" />
+        <img src="/cosa-wordmark.png" alt="COSA" />
       </a>
 
       <a
