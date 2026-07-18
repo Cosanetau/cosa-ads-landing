@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
@@ -440,8 +440,31 @@ function StickyMobileCta({ billingCycle }) {
   );
 }
 
+// Conversion bridge: Stripe sends new subscribers here so Google Ads can
+// record the conversion on this domain, then we forward them into the app.
+function WelcomeBridge() {
+  useEffect(() => {
+    const target = `${CORE_APP_URL}/welcome${window.location.search}`;
+    const timer = window.setTimeout(() => {
+      window.location.replace(target);
+    }, 700);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  return (
+    <main className="welcome-bridge">
+      <img src="/cosa-wordmark.png" alt="COSA" width="140" />
+      <p>Setting up your account…</p>
+    </main>
+  );
+}
+
 export default function App() {
   const [billingCycle, setBillingCycle] = useState(DEFAULT_BILLING);
+
+  if (window.location.pathname.startsWith("/welcome")) {
+    return <WelcomeBridge />;
+  }
 
   return (
     <main>

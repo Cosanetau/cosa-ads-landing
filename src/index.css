@@ -715,3 +715,20 @@ h3 {
     font-size: 15.5px;
   }
 }
+
+.welcome-bridge {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 24px;
+}
+
+.welcome-bridge p {
+  font-size: 17px;
+  color: var(--ink, #101010);
+  font-weight: 600;
+}
