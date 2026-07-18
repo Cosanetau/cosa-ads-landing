@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarDays,
   Check,
   ChevronRight,
-  ClipboardList,
-  FileText,
   Gift,
-  LayoutDashboard,
   ShieldCheck,
   Sparkles,
-  Users,
 } from "lucide-react";
 
 const CORE_APP_URL = "https://core.cosa.net.au";
@@ -46,7 +41,7 @@ const plans = [
     planKey: "growth",
     users: "10 users",
     monthlyPrice: 149,
-    fit: "Busy independent workshops. Most start here.",
+    fit: "Busy independent workshops.",
     featured: true,
   },
   {
@@ -60,19 +55,19 @@ const plans = [
 
 const painPoints = [
   {
-    problem: "Jobs written on paper get lost, and work goes unbilled.",
+    problem: "Paper job cards get lost and work goes unbilled.",
     solution:
-      "Digital job cards keep every job, note and part in one place — so everything billable ends up on the invoice.",
+      "Digital job cards keep every job, note and part in one place, so everything billable ends up on the invoice.",
   },
   {
     problem: "The diary, the whiteboard and the spreadsheet never agree.",
     solution:
-      "One live booking diary the whole team sees. No double-booked bays, no surprise no-shows.",
+      "One live booking diary the whole team sees. No double bookings and fewer missed appointments.",
   },
   {
-    problem: "Quoting and invoicing eats your nights and weekends.",
+    problem: "Quoting and invoicing eats your nights.",
     solution:
-      "Turn a quote into a job and a job into an invoice without retyping a thing. Done before you leave the shop.",
+      "Turn a quote into a job and a job into an invoice without retyping anything. Done before you leave the shop.",
   },
 ];
 
@@ -82,90 +77,52 @@ const includedFeatures = [
   "Customers & vehicle history",
   "Quotes & invoices",
   "Parts & inventory",
-  "Staff accounts & clock-on",
+  "Staff accounts",
   "Reporting",
   "Service reminders",
-  "Xero & QuickBooks integration",
-];
-
-const showcaseScreens = [
-  {
-    id: "dashboard",
-    icon: LayoutDashboard,
-    title: "Dashboard",
-    text: "Today's jobs, bookings and what needs attention — at a glance.",
-    image: "/screenshots/dashboard.png",
-  },
-  {
-    id: "bookings",
-    icon: CalendarDays,
-    title: "Booking diary",
-    text: "The day's schedule, clear. Add a booking in seconds.",
-    image: "/screenshots/bookings.png",
-  },
-  {
-    id: "job-cards",
-    icon: ClipboardList,
-    title: "Job cards",
-    text: "Techs and the front desk on the same page, every job.",
-    image: "/screenshots/job-cards.png",
-  },
-  {
-    id: "customers",
-    icon: Users,
-    title: "Customers",
-    text: "Full customer and vehicle history the moment they call.",
-    image: "/screenshots/customers.png",
-  },
-  {
-    id: "invoicing",
-    icon: FileText,
-    title: "Invoicing",
-    text: "Professional invoices with payments tracked on every job.",
-    image: "/screenshots/invoicing.png",
-  },
+  "Accounting integrations",
 ];
 
 const offerFaq = [
   {
-    question: "How does the first month free work?",
+    question: "How does the free month work?",
     answer:
       "Pick monthly or yearly, create your workshop login and complete secure checkout. Your first month is free on either option, with full access from day one.",
   },
   {
     question: "When will I be charged?",
     answer:
-      "Your card is saved at checkout but nothing is charged for the first month. On monthly, your first payment is the plan price after the free month. On yearly, you're charged the annual price after the free month — and the annual price is only 11 months, so a second month is free too.",
+      "Your card is saved at checkout but nothing is charged for the first month. On monthly, your first payment is the plan price after the free month. On yearly, you are charged the annual price after the free month, and the annual price covers a full year for the cost of 11 months.",
   },
   {
     question: "Can I cancel during the free month?",
     answer:
-      "Yes. Cancel anytime from Settings inside COSA Core. Cancel during the free month and you pay nothing at all.",
+      "Yes. Cancel anytime from Settings inside COSA Core. If you cancel during the free month you pay nothing at all.",
   },
   {
-    question: "Is there a setup fee or lock-in contract?",
+    question: "Is there a setup fee or contract?",
     answer:
-      "No and no. The listed price is the whole price, and you can cancel whenever you like.",
+      "No. The listed price is the whole price and you can cancel whenever you like.",
   },
   {
     question: "How long does setup take?",
     answer:
-      "Minutes, not weeks. Checkout creates your workshop automatically and you can sign straight in and start adding bookings the same day.",
+      "Minutes. Checkout creates your workshop automatically and you can sign straight in and start adding bookings the same day.",
   },
   {
     question: "Can I change plans later?",
     answer:
-      "Yes. Upgrade to a bigger user limit anytime from inside COSA Core — Stripe prorates the change automatically.",
+      "Yes. Upgrade to a bigger user limit anytime from inside COSA Core. Billing adjusts automatically for the rest of your period.",
   },
   {
     question: "What support is included?",
     answer:
-      "Every plan includes support from the COSA team via the in-app support page and email. You talk directly to the people who build the software.",
+      "Every plan includes support from the COSA team via the in app support page and email. You talk directly to the people who build the software.",
   },
   {
     question: "Is it suitable for a small workshop?",
     answer:
-      "Yes. The Starter plan covers up to 5 users and includes every feature — small workshops get exactly the same software as large ones.",
+      "Yes. The Starter plan covers up to 5 users and includes every feature. Small workshops get exactly the same software as large ones.",
   },
 ];
 
@@ -182,7 +139,7 @@ function Microcopy() {
   return (
     <p className="microcopy">
       <ShieldCheck size={15} />
-      No setup fee · Cancel anytime · Takes 2 minutes
+      No setup fee. Cancel anytime. Takes 2 minutes.
     </p>
   );
 }
@@ -213,16 +170,12 @@ function Hero({ billingCycle }) {
         First month free on every plan
       </p>
 
-      <h1>
-        Run your workshop without the paperwork.
-        <span> First month free.</span>
-      </h1>
+      <h1>Run your workshop without the paperwork.</h1>
 
       <p className="hero-text">
         COSA Core replaces the paper diary, the whiteboard and the spreadsheet
-        with one system for bookings, job cards, invoices and parts. Try it in
-        your workshop free for a month — if it doesn't save you hours, cancel
-        and pay nothing.
+        with one system for bookings, job cards, invoices and parts. Set up in
+        minutes and see if it fits the way your workshop runs.
       </p>
 
       <div className="hero-actions">
@@ -231,10 +184,7 @@ function Hero({ billingCycle }) {
 
       <Microcopy />
 
-      <p className="hero-trust">
-        Built in Perth for Australian workshops · Connects with Xero &
-        QuickBooks
-      </p>
+      <p className="hero-trust">Built in Perth for Australian workshops.</p>
     </section>
   );
 }
@@ -245,7 +195,7 @@ function PricingSection({ billingCycle, setBillingCycle }) {
   return (
     <section className="section pricing-section" id="pricing">
       <div className="section-heading">
-        <h2>Simple pricing. First month free either way.</h2>
+        <h2>Simple pricing.</h2>
         <span>
           Every plan includes everything. You only pick how many users your
           team needs. All prices include GST.
@@ -267,7 +217,7 @@ function PricingSection({ billingCycle, setBillingCycle }) {
             className={isYearly ? "active" : ""}
             onClick={() => setBillingCycle("yearly")}
           >
-            Yearly — save a month
+            Yearly
           </button>
         </div>
 
@@ -275,12 +225,12 @@ function PricingSection({ billingCycle, setBillingCycle }) {
           {isYearly ? (
             <>
               <strong>Best value:</strong>
-              <span>first month free, then pay for 11 months and get 12</span>
+              <span>pay for 11 months and get a full year</span>
             </>
           ) : (
             <>
-              <strong>Lowest commitment:</strong>
-              <span>first month free, then month to month</span>
+              <strong>Flexible:</strong>
+              <span>month to month with no contracts</span>
             </>
           )}
         </p>
@@ -312,14 +262,13 @@ function PricingSection({ billingCycle, setBillingCycle }) {
                   <>
                     <strong>then ${yearlyPrice}/year</strong>
                     <p className="gst-note">
-                      Incl. GST · 11 months for a full year — save $
-                      {plan.monthlyPrice}
+                      Incl. GST. Covers a full year for the price of 11 months.
                     </p>
                   </>
                 ) : (
                   <>
                     <strong>then ${plan.monthlyPrice}/month</strong>
-                    <p className="gst-note">Incl. GST · No setup fee</p>
+                    <p className="gst-note">Incl. GST. No setup fee.</p>
                   </>
                 )}
 
@@ -332,11 +281,11 @@ function PricingSection({ billingCycle, setBillingCycle }) {
                   </li>
                   <li>
                     <Check size={16} />
-                    {isYearly ? "Pay for 11 months, get 12" : "No lock-in contract"}
+                    No contracts
                   </li>
                   <li>
                     <Check size={16} />
-                    Cancel anytime — even in the free month
+                    Cancel anytime
                   </li>
                 </ul>
               </div>
@@ -351,9 +300,9 @@ function PricingSection({ billingCycle, setBillingCycle }) {
       </div>
 
       <p className="pricing-footnote">
-        Card saved at checkout, charged only after your free month — and never
-        if you cancel first. Need more than 20 users?{" "}
-        <a href={`${MAIN_SITE_URL}/contact`}>Talk to COSA</a>.
+        Your card is saved at checkout and nothing is charged until the free
+        month ends. Cancel before then and you pay nothing. Need more than 20
+        users? <a href={`${MAIN_SITE_URL}/contact`}>Talk to COSA</a>.
       </p>
     </section>
   );
@@ -383,13 +332,13 @@ function PainSection({ billingCycle }) {
   return (
     <section className="section">
       <div className="section-heading">
-        <h2>Sound familiar?</h2>
+        <h2>Why workshops switch.</h2>
       </div>
 
       <div className="pain-stack">
         {painPoints.map((item) => (
           <article key={item.problem} className="pain-row">
-            <p className="pain-problem">"{item.problem}"</p>
+            <p className="pain-problem">{item.problem}</p>
             <p className="pain-solution">
               <Check size={17} />
               {item.solution}
@@ -420,84 +369,6 @@ function PainSection({ billingCycle }) {
   );
 }
 
-function ShowcaseImage({ screen }) {
-  const [failed, setFailed] = useState(false);
-  const Icon = screen.icon;
-
-  if (failed) {
-    return (
-      <div className="shot-fallback" aria-hidden="true">
-        <Icon size={30} />
-        <span>{screen.title}</span>
-      </div>
-    );
-  }
-
-  return (
-    <img
-      src={screen.image}
-      alt={`COSA Core ${screen.title.toLowerCase()} screen`}
-      loading="lazy"
-      onError={() => setFailed(true)}
-    />
-  );
-}
-
-function ProofSection() {
-  return (
-    <section className="section">
-      <div className="section-heading">
-        <h2>See it before you start.</h2>
-        <span>Real screens from COSA Core, and a two-minute look inside.</span>
-      </div>
-
-      <div className="proof-layout">
-        <div className="video-card">
-          <video
-            src={`${MAIN_SITE_URL}/cosa-core-preview.mp4`}
-            controls
-            playsInline
-            preload="none"
-            poster={`${MAIN_SITE_URL}/cosa-core-video-cover.png`}
-          />
-        </div>
-
-        <div className="shot-grid">
-          {showcaseScreens.map((screen) => (
-            <figure key={screen.id} className="shot-card">
-              <div className="shot-frame">
-                <ShowcaseImage screen={screen} />
-              </div>
-              <figcaption>
-                <strong>{screen.title}</strong>
-                <span>{screen.text}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-
-      <div className="perth-strip">
-        <p>
-          <strong>Built and supported in Perth.</strong> COSA Core is developed
-          by Custom Operating Software Australia and shaped by the workshops
-          that use it every day. When you need help, you talk to the people who
-          build it.
-        </p>
-        <div className="logo-row" aria-label="Available integrations">
-          <img src={`${MAIN_SITE_URL}/integrations/xero.svg`} alt="Xero" loading="lazy" />
-          <img
-            src={`${MAIN_SITE_URL}/integrations/quickbooks.svg`}
-            alt="QuickBooks"
-            loading="lazy"
-          />
-          <img src={`${MAIN_SITE_URL}/integrations/podium.svg`} alt="Podium" loading="lazy" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function FaqSection() {
   return (
     <section className="section">
@@ -521,15 +392,10 @@ function FinalCtaSection({ billingCycle }) {
   return (
     <section className="section">
       <div className="final-cta">
-        <p className="offer-badge">
-          <Gift size={16} />
-          First month free on every plan
-        </p>
-
-        <h2>Your first month is free. The paperwork isn't.</h2>
+        <h2>Ready for a tidier workshop?</h2>
         <p>
-          Every week on paper costs you hours you don't get back. Try COSA Core
-          free — worst case, you cancel and it cost you nothing.
+          Start today and use the full system in your workshop before you pay
+          anything. If it does not earn its place, cancel and pay nothing.
         </p>
 
         <div className="hero-actions">
@@ -551,6 +417,7 @@ function Footer() {
 
       <nav>
         <a href={MAIN_SITE_URL}>cosa.net.au</a>
+        <a href={`${MAIN_SITE_URL}/integrations`}>Integrations</a>
         <a href={`${MAIN_SITE_URL}/privacy`}>Privacy</a>
         <a href={`${MAIN_SITE_URL}/terms`}>Terms</a>
         <a href={`${CORE_APP_URL}/login`}>Sign In</a>
@@ -562,7 +429,6 @@ function Footer() {
 function StickyMobileCta({ billingCycle }) {
   return (
     <div className="sticky-cta">
-      <span>First month free</span>
       <a
         className="primary-button"
         href={getOfferSubscribeUrl(DEFAULT_PLAN_KEY, billingCycle)}
@@ -587,7 +453,6 @@ export default function App() {
       />
       <OfferStrip />
       <PainSection billingCycle={billingCycle} />
-      <ProofSection />
       <FaqSection />
       <FinalCtaSection billingCycle={billingCycle} />
       <Footer />

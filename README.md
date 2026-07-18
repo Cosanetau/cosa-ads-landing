@@ -30,14 +30,6 @@ npm run dev
 
 Deploy as its own Vercel project (SPA rewrite included in `vercel.json`). Suggested domain: `start.cosa.net.au` or `try.cosa.net.au`.
 
-## Screenshots
+## Assets
 
-The "See it in action" section looks for real product screenshots in `public/screenshots/`:
-
-- `dashboard.png`
-- `bookings.png`
-- `job-cards.png`
-- `customers.png`
-- `invoicing.png`
-
-Until those files exist, styled placeholder tiles are shown instead. Shared brand assets (wordmark, preview video, integration logos) are loaded from cosa.net.au.
+The COSA wordmark is loaded from cosa.net.au. Everything else on the page is text and CSS.
