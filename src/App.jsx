@@ -445,9 +445,24 @@ function StickyMobileCta({ billingCycle }) {
 function WelcomeBridge() {
   useEffect(() => {
     const target = `${CORE_APP_URL}/welcome${window.location.search}`;
-    const timer = window.setTimeout(() => {
+    let redirected = false;
+
+    const goToApp = () => {
+      if (redirected) return;
+      redirected = true;
       window.location.replace(target);
-    }, 700);
+    };
+
+    // Fire the Google Ads Subscribe conversion, then forward into COSA Core.
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18332129397/-g7OCJWXztIcEPWwuKVE",
+        event_callback: goToApp,
+      });
+    }
+
+    // Fallback if gtag is blocked or the callback never fires.
+    const timer = window.setTimeout(goToApp, 1500);
     return () => window.clearTimeout(timer);
   }, []);
 
