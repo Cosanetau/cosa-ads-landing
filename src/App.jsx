@@ -444,6 +444,8 @@ function StickyMobileCta({ billingCycle }) {
 // record the conversion on this domain, then we forward them into the app.
 function WelcomeBridge() {
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get("session_id") || "";
     const target = `${CORE_APP_URL}/welcome${window.location.search}`;
     let redirected = false;
 
@@ -453,17 +455,44 @@ function WelcomeBridge() {
       window.location.replace(target);
     };
 
-    // Fire the Google Ads Subscribe conversion, then forward into COSA Core.
-    if (typeof window.gtag === "function") {
+    const fireConversion = () => {
+      if (typeof window.gtag !== "function") return;
+      const storageKey = `cosa-ads-conversion:${sessionId}`;
+      if (sessionStorage.getItem(storageKey)) return;
+      sessionStorage.setItem(storageKey, "1");
       window.gtag("event", "conversion", {
         send_to: "AW-18332129397/-g7OCJWXztIcEPWwuKVE",
         event_callback: goToApp,
       });
+    };
+
+    async function handleWelcome() {
+      // No session_id means this is not a real checkout — skip conversion.
+      if (!sessionId) {
+        goToApp();
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${CORE_APP_URL}/api/checkout-status?session_id=${encodeURIComponent(sessionId)}`,
+        );
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok && result.paymentComplete) {
+          fireConversion();
+          // Fallback if gtag callback never fires.
+          window.setTimeout(goToApp, 1500);
+          return;
+        }
+      } catch {
+        // Network error — still forward, but do not count a conversion.
+      }
+
+      goToApp();
     }
 
-    // Fallback if gtag is blocked or the callback never fires.
-    const timer = window.setTimeout(goToApp, 1500);
-    return () => window.clearTimeout(timer);
+    handleWelcome();
   }, []);
 
   return (
