@@ -114,7 +114,7 @@ const landings = {
     gallery: ["dashboard", "booking-diary", "follow-ups"],
   },
   "/no-setup-fee": {
-    headline: "No Setup Fee Cancel Anytime",
+    headline: "No setup fee, cancel anytime",
     support:
       "Start COSA Core with first month free. No setup fee, no lock in contract, and you can cancel before the free month ends and pay nothing.",
     image: "/screenshots/dashboard.png",

@@ -777,10 +777,13 @@ h3 {
 }
 
 .hero-with-shot {
+  max-width: 1120px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 28px;
   align-items: center;
+  text-align: left;
 }
 
 .hero-with-shot .hero-copy {
@@ -792,6 +795,19 @@ h3 {
   margin: 0;
   font-size: clamp(2rem, 4.5vw, 3.2rem);
   line-height: 1.08;
+}
+
+.hero-with-shot .hero-text {
+  margin: 0;
+  max-width: none;
+}
+
+.hero-with-shot .hero-actions {
+  justify-content: flex-start;
+}
+
+.hero-with-shot .hero-trust {
+  margin: 0;
 }
 
 .hero-shot {
