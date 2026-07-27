@@ -71,47 +71,29 @@ const painPoints = [
   },
 ];
 
+const sharedSupport =
+  "COSA Core puts bookings, job cards, invoices and parts in one system. First month free. No setup fee. Cancel anytime.";
+
+// One page per Google Ads headline so the first thing they see matches the click.
 const landings = {
   "/": {
-    headline: "Run your workshop without the paperwork.",
-    support:
-      "COSA Core replaces the paper diary, the whiteboard and the spreadsheet with one system for bookings, job cards, invoices and parts. Set up in minutes and see if it fits the way your workshop runs.",
-    showcaseTitle: "See the system workshops use every day.",
-    showcaseText: "Bookings, job cards and invoices in one place.",
+    headline: "Workshop Software Made Easy",
+    support: sharedSupport,
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core workshop dashboard",
+    showcaseTitle: "See COSA Core in a real workshop.",
+    showcaseText: "Dashboard, booking diary, follow ups and support in one system.",
     pains: painPoints,
-    mock: "diary",
+    gallery: ["dashboard", "booking-diary", "follow-ups"],
   },
-  "/bookings": {
-    headline: "Workshop booking software that stops double bookings.",
+  "/ditch-paper-job-cards": {
+    headline: "Ditch The Paper Job Cards",
     support:
-      "One live diary for the whole team. See the day at a glance, confirm jobs fast and stop chasing whiteboards.",
-    showcaseTitle: "A booking diary your floor can actually follow.",
-    showcaseText: "Live schedule, job numbers and status in one view.",
-    pains: [
-      {
-        problem: "The diary, the whiteboard and the spreadsheet never agree.",
-        solution:
-          "One live booking diary the whole team sees. No double bookings and fewer missed appointments.",
-      },
-      {
-        problem: "Unconfirmed jobs get lost in the morning rush.",
-        solution:
-          "See what still needs confirming and move bookings without rewriting the day.",
-      },
-      {
-        problem: "Staff ask the same schedule questions every hour.",
-        solution:
-          "Everyone looks at the same diary, so the answer is already on screen.",
-      },
-    ],
-    mock: "diary",
-  },
-  "/job-cards": {
-    headline: "Digital job cards that do not get lost under the bench.",
-    support:
-      "Keep every job, note and part on one card. Print when you need to, and turn finished work into an invoice without retyping.",
-    showcaseTitle: "Job cards built for the workshop floor.",
-    showcaseText: "Work required, internal notes and parts in one card.",
+      "Keep every job, note and part on one digital card. Print when you need to, and turn finished work into an invoice without retyping.",
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core dashboard replacing paper job cards",
+    showcaseTitle: "Digital job cards your floor can follow.",
+    showcaseText: "Less lost paperwork. More work that makes it onto the invoice.",
     pains: [
       {
         problem: "Paper job cards get lost and work goes unbilled.",
@@ -129,32 +111,142 @@ const landings = {
           "Add work and parts to the job as it happens, then invoice from the same record.",
       },
     ],
-    mock: "jobcard",
+    gallery: ["dashboard", "booking-diary", "follow-ups"],
   },
-  "/invoicing": {
-    headline: "Workshop invoicing without the late night retyping.",
+  "/no-setup-fee": {
+    headline: "No Setup Fee Cancel Anytime",
     support:
-      "Turn a quote into a job and a job into an invoice. First month free, then clear monthly pricing with no setup fee.",
-    showcaseTitle: "Quotes and invoices that follow the job.",
-    showcaseText: "Line items, labour and totals ready to print or email.",
+      "Start COSA Core with first month free. No setup fee, no lock in contract, and you can cancel before the free month ends and pay nothing.",
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core with no setup fee",
+    showcaseTitle: "Full access from day one.",
+    showcaseText: "Try the whole system before you pay a cent.",
     pains: [
       {
-        problem: "Quoting and invoicing eats your nights.",
-        solution:
-          "Turn a quote into a job and a job into an invoice without retyping anything.",
+        problem: "Most software wants a setup fee before you even try it.",
+        solution: "COSA Core has no setup fee. Start free and see if it fits.",
       },
       {
-        problem: "Billable work never makes it onto the invoice.",
-        solution:
-          "Job card work and parts feed the invoice, so less revenue walks out the door.",
+        problem: "Long contracts lock you in before the tool proves itself.",
+        solution: "Cancel anytime. If you cancel in the free month, you pay nothing.",
       },
       {
-        problem: "Customers wait too long for a clean invoice.",
-        solution:
-          "Print or email from the same screen once the job is done.",
+        problem: "You need the full system, not a limited trial.",
+        solution: "First month free includes every feature on every plan.",
       },
     ],
-    mock: "invoice",
+    gallery: ["dashboard", "booking-diary", "support"],
+  },
+  "/aussie-workshops": {
+    headline: "Built For Aussie Workshops",
+    support:
+      "Workshop software built in Perth for Australian workshops. Bookings, job cards, invoices and parts in one place, with local support.",
+    image: "/screenshots/booking-diary.png",
+    imageAlt: "COSA Core booking diary for Australian workshops",
+    showcaseTitle: "Made for the way Aussie workshops run.",
+    showcaseText: "Built and supported in Perth, not bolted on from overseas.",
+    pains: painPoints,
+    gallery: ["booking-diary", "dashboard", "follow-ups"],
+  },
+  "/first-month-free": {
+    headline: "First Month Free",
+    support:
+      "Get full access to COSA Core for your first month free. No setup fee. Cancel anytime. Takes a couple of minutes to start.",
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core first month free",
+    showcaseTitle: "Try the full system before you pay.",
+    showcaseText: "Bookings, job cards, invoices and parts included from day one.",
+    pains: painPoints,
+    gallery: ["dashboard", "booking-diary", "follow-ups"],
+  },
+  "/run-workshop-smarter": {
+    headline: "Run Your Workshop Smarter",
+    support:
+      "One system for the diary, job cards, invoices and parts. Less chasing paperwork. More time on cars.",
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core workshop dashboard",
+    showcaseTitle: "Today's workshop in one screen.",
+    showcaseText: "Jobs, alerts and team activity without the whiteboard chaos.",
+    pains: painPoints,
+    gallery: ["dashboard", "booking-diary", "follow-ups"],
+  },
+  "/bookings-jobs-invoices": {
+    headline: "Bookings, Jobs & Invoices",
+    support:
+      "Run the booking diary, job cards and invoices from one place. First month free on every plan.",
+    image: "/screenshots/booking-diary.png",
+    imageAlt: "COSA Core booking diary",
+    showcaseTitle: "From booking to invoice without retyping.",
+    showcaseText: "The diary, the job and the invoice stay connected.",
+    pains: painPoints,
+    gallery: ["booking-diary", "dashboard", "follow-ups"],
+  },
+  "/workshop-software": {
+    headline: "Workshop Software Made Easy",
+    support: sharedSupport,
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core workshop software",
+    showcaseTitle: "Simple software for busy workshops.",
+    showcaseText: "Clean screens your team can use without training days.",
+    pains: painPoints,
+    gallery: ["dashboard", "booking-diary", "support"],
+  },
+  // Keep older ad paths working.
+  "/bookings": {
+    headline: "Workshop Software Made Easy",
+    support:
+      "One live diary for the whole team. See the day at a glance, confirm jobs fast and stop chasing whiteboards.",
+    image: "/screenshots/booking-diary.png",
+    imageAlt: "COSA Core booking diary",
+    showcaseTitle: "A booking diary your floor can actually follow.",
+    showcaseText: "Live schedule, job numbers and status in one view.",
+    pains: painPoints,
+    gallery: ["booking-diary", "dashboard", "follow-ups"],
+  },
+  "/job-cards": {
+    headline: "Ditch The Paper Job Cards",
+    support:
+      "Keep every job, note and part on one digital card. Print when you need to, and turn finished work into an invoice without retyping.",
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core digital workshop system",
+    showcaseTitle: "Digital job cards your floor can follow.",
+    showcaseText: "Less lost paperwork. More work that makes it onto the invoice.",
+    pains: painPoints,
+    gallery: ["dashboard", "booking-diary", "follow-ups"],
+  },
+  "/invoicing": {
+    headline: "Bookings, Jobs & Invoices",
+    support:
+      "Turn a quote into a job and a job into an invoice. First month free, then clear monthly pricing with no setup fee.",
+    image: "/screenshots/dashboard.png",
+    imageAlt: "COSA Core invoices and workshop tools",
+    showcaseTitle: "Quotes and invoices that follow the job.",
+    showcaseText: "Line items, labour and totals ready to print or email.",
+    pains: painPoints,
+    gallery: ["dashboard", "booking-diary", "follow-ups"],
+  },
+};
+
+const screenshotMeta = {
+  dashboard: {
+    src: "/screenshots/dashboard.png",
+    alt: "COSA Core dashboard",
+    label: "Dashboard",
+  },
+  "booking-diary": {
+    src: "/screenshots/booking-diary.png",
+    alt: "COSA Core booking diary",
+    label: "Booking diary",
+  },
+  "follow-ups": {
+    src: "/screenshots/follow-ups.png",
+    alt: "COSA Core follow ups",
+    label: "Follow ups",
+  },
+  support: {
+    src: "/screenshots/support.png",
+    alt: "COSA Core support tickets",
+    label: "Support",
   },
 };
 
@@ -251,150 +343,53 @@ function Header({ billingCycle }) {
 
 function Hero({ billingCycle, landing }) {
   return (
-    <section className="hero">
-      <p className="offer-badge">
-        <Gift size={16} />
-        First month free on every plan
-      </p>
+    <section className="hero hero-with-shot">
+      <div className="hero-copy">
+        <h1>{landing.headline}</h1>
 
-      <h1>{landing.headline}</h1>
+        <p className="offer-badge">
+          <Gift size={16} />
+          First month free on every plan
+        </p>
 
-      <p className="hero-text">{landing.support}</p>
+        <p className="hero-text">{landing.support}</p>
 
-      <div className="hero-actions">
-        <OfferCta billingCycle={billingCycle} />
+        <div className="hero-actions">
+          <OfferCta billingCycle={billingCycle} />
+        </div>
+
+        <Microcopy />
+
+        <p className="hero-trust">Built in Perth for Australian workshops.</p>
       </div>
 
-      <Microcopy />
-
-      <p className="hero-trust">Built in Perth for Australian workshops.</p>
+      <div className="hero-shot">
+        <img src={landing.image} alt={landing.imageAlt} />
+      </div>
     </section>
   );
 }
 
-function ProductMock({ type }) {
-  if (type === "jobcard") {
-    return (
-      <div className="product-mock product-mock-jobcard" aria-hidden="true">
-        <div className="product-mock-chrome">
-          <span />
-          <span />
-          <span />
-          <strong>Job #10482</strong>
-        </div>
-        <div className="product-mock-body">
-          <p className="product-mock-kicker">Repair order</p>
-          <h3>1HZ Prado · 1ABC123</h3>
-          <div className="product-mock-block">
-            <span>Customer request</span>
-            <p>AC not cold after highway run. Check compressor and gas.</p>
-          </div>
-          <div className="product-mock-block">
-            <span>Internal notes</span>
-            <p>Called customer 2:10pm. Waiting approval on condenser.</p>
-          </div>
-          <div className="product-mock-rows">
-            <div>
-              <strong>Labour</strong>
-              <span>Diagnose AC system</span>
-            </div>
-            <div>
-              <strong>Parts</strong>
-              <span>Condenser assembly</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (type === "invoice") {
-    return (
-      <div className="product-mock product-mock-invoice" aria-hidden="true">
-        <div className="product-mock-chrome">
-          <span />
-          <span />
-          <span />
-          <strong>Invoice INV-10482</strong>
-        </div>
-        <div className="product-mock-body">
-          <div className="product-mock-invoice-head">
-            <div>
-              <p>WestCoast Auto</p>
-              <small>Tax invoice</small>
-            </div>
-            <strong>$486.20</strong>
-          </div>
-          <div className="product-mock-rows">
-            <div>
-              <span>Diagnose AC system</span>
-              <strong>$165.00</strong>
-            </div>
-            <div>
-              <span>Condenser assembly</span>
-              <strong>$276.00</strong>
-            </div>
-            <div>
-              <span>Refrigerant recharge</span>
-              <strong>$45.20</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="product-mock product-mock-diary" aria-hidden="true">
-      <div className="product-mock-chrome">
-        <span />
-        <span />
-        <span />
-        <strong>Booking diary</strong>
-      </div>
-      <div className="product-mock-body">
-        <div className="product-mock-day">
-          <span>Tue 28 Jul</span>
-          <strong>8 jobs</strong>
-        </div>
-        <div className="product-mock-rows">
-          <div>
-            <strong>#10480</strong>
-            <span>8:30 · Service</span>
-          </div>
-          <div>
-            <strong>#10481</strong>
-            <span>9:15 · AC diagnose</span>
-          </div>
-          <div className="is-live">
-            <strong>#10482</strong>
-            <span>10:00 · In progress</span>
-          </div>
-          <div>
-            <strong>#10483</strong>
-            <span>11:30 · Quote</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ProductShowcase({ landing }) {
+  const gallery = (landing.gallery || ["dashboard", "booking-diary", "follow-ups"])
+    .map((key) => screenshotMeta[key])
+    .filter(Boolean);
+
   return (
     <section className="section product-showcase">
-      <div className="product-showcase-grid">
-        <div>
-          <p className="section-kicker">Inside COSA Core</p>
-          <h2>{landing.showcaseTitle}</h2>
-          <p>{landing.showcaseText}</p>
-          <img
-            className="product-cover"
-            src="/product-core-cover.png"
-            alt="COSA Core workshop software"
-          />
-        </div>
-        <ProductMock type={landing.mock} />
+      <div className="section-heading">
+        <p className="section-kicker">Inside COSA Core</p>
+        <h2>{landing.showcaseTitle}</h2>
+        <span>{landing.showcaseText}</span>
+      </div>
+
+      <div className="screenshot-grid">
+        {gallery.map((shot) => (
+          <figure key={shot.src} className="screenshot-card">
+            <img src={shot.src} alt={shot.alt} />
+            <figcaption>{shot.label}</figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   );
