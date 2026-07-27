@@ -328,8 +328,7 @@ function Header({ billingCycle, minimal = false }) {
   return (
     <header className="site-header">
       <a className="brand" href={MAIN_SITE_URL} aria-label="COSA home">
-        <img className="brand-mark" src="/favicon.svg" alt="" aria-hidden="true" />
-        <img className="brand-wordmark" src="/cosa-wordmark.png" alt="COSA" />
+        <img className="brand-logo" src="/cosa-logo.png" alt="COSA" />
       </a>
 
       {!minimal ? (
@@ -775,8 +774,7 @@ function WelcomeBridge() {
     <>
       <Header billingCycle={DEFAULT_BILLING} minimal />
       <main className="welcome-bridge welcome-thankyou">
-        <img src="/favicon.svg" alt="" className="welcome-brand-mark" aria-hidden="true" />
-        <img src="/cosa-wordmark.png" alt="COSA" width="160" />
+        <img src="/cosa-logo.png" alt="COSA" width="160" />
 
       {status === "checking" ? (
         <>
