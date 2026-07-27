@@ -21,7 +21,8 @@ const CTA_LABEL = "Start My Free Month";
 
 function getOfferSubscribeUrl(planKey, billingCycle = DEFAULT_BILLING) {
   const billing = billingCycle === "yearly" ? "yearly" : "monthly";
-  return `${CORE_APP_URL}/subscribe?plan=${planKey}&billing=${billing}&code=${OFFER_PROMO_CODE}`;
+  // from=ads sends checkout back to this domain's thank-you page for conversion.
+  return `${CORE_APP_URL}/subscribe?plan=${planKey}&billing=${billing}&code=${OFFER_PROMO_CODE}&from=ads`;
 }
 
 function getYearlyPrice(monthlyPrice) {
@@ -323,25 +324,89 @@ function Microcopy() {
   );
 }
 
-function Header({ billingCycle }) {
+function Header({ billingCycle, minimal = false }) {
   return (
     <header className="site-header">
       <a className="brand" href={MAIN_SITE_URL} aria-label="COSA home">
-        <img src="/cosa-wordmark.png" alt="COSA" />
+        <img className="brand-mark" src="/favicon.svg" alt="" aria-hidden="true" />
+        <img className="brand-wordmark" src="/cosa-wordmark.png" alt="COSA" />
       </a>
 
-      <a
-        className="header-button"
-        href={getOfferSubscribeUrl(DEFAULT_PLAN_KEY, billingCycle)}
-      >
-        {CTA_LABEL}
-        <ArrowRight size={16} />
-      </a>
+      {!minimal ? (
+        <a
+          className="header-button"
+          href={getOfferSubscribeUrl(DEFAULT_PLAN_KEY, billingCycle)}
+        >
+          {CTA_LABEL}
+          <ArrowRight size={16} />
+        </a>
+      ) : null}
     </header>
   );
 }
 
-function Hero({ billingCycle, landing }) {
+function ImageLightbox({ image, onClose }) {
+  useEffect(() => {
+    function onKeyDown(event) {
+      if (event.key === "Escape") onClose();
+    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  if (!image) return null;
+
+  return (
+    <div
+      className="image-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.alt}
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        className="image-lightbox-close"
+        aria-label="Close enlarged image"
+        onClick={onClose}
+      >
+        ×
+      </button>
+      <figure className="image-lightbox-frame" onClick={(event) => event.stopPropagation()}>
+        <img src={image.src} alt={image.alt} />
+        {image.label ? <figcaption>{image.label}</figcaption> : null}
+      </figure>
+    </div>
+  );
+}
+
+function ZoomableImage({ shot, onOpen, className = "screenshot-thumb" }) {
+  return (
+    <button
+      type="button"
+      className={className}
+      onClick={() => onOpen(shot)}
+      aria-label={`Enlarge ${shot.label}`}
+    >
+      <img src={shot.src} alt={shot.alt} />
+      <span className="screenshot-zoom-hint">Click to enlarge</span>
+    </button>
+  );
+}
+
+function Hero({ billingCycle, landing, onOpenImage }) {
+  const heroShot = {
+    src: landing.image,
+    alt: landing.imageAlt,
+    label: landing.headline,
+  };
+
   return (
     <section className="hero hero-with-shot">
       <div className="hero-copy">
@@ -364,13 +429,17 @@ function Hero({ billingCycle, landing }) {
       </div>
 
       <div className="hero-shot">
-        <img src={landing.image} alt={landing.imageAlt} />
+        <ZoomableImage
+          shot={heroShot}
+          onOpen={onOpenImage}
+          className="hero-shot-button"
+        />
       </div>
     </section>
   );
 }
 
-function ProductShowcase({ landing }) {
+function ProductShowcase({ landing, onOpenImage }) {
   const gallery = (landing.gallery || ["dashboard", "booking-diary", "follow-ups"])
     .map((key) => screenshotMeta[key])
     .filter(Boolean);
@@ -386,7 +455,7 @@ function ProductShowcase({ landing }) {
       <div className="screenshot-grid">
         {gallery.map((shot) => (
           <figure key={shot.src} className="screenshot-card">
-            <img src={shot.src} alt={shot.alt} />
+            <ZoomableImage shot={shot} onOpen={onOpenImage} />
             <figcaption>{shot.label}</figcaption>
           </figure>
         ))}
@@ -703,8 +772,11 @@ function WelcomeBridge() {
   }, [sessionId]);
 
   return (
-    <main className="welcome-bridge welcome-thankyou">
-      <img src="/cosa-wordmark.png" alt="COSA" width="160" />
+    <>
+      <Header billingCycle={DEFAULT_BILLING} minimal />
+      <main className="welcome-bridge welcome-thankyou">
+        <img src="/favicon.svg" alt="" className="welcome-brand-mark" aria-hidden="true" />
+        <img src="/cosa-wordmark.png" alt="COSA" width="160" />
 
       {status === "checking" ? (
         <>
@@ -756,7 +828,8 @@ function WelcomeBridge() {
           </div>
         </>
       ) : null}
-    </main>
+      </main>
+    </>
   );
 }
 
@@ -767,6 +840,7 @@ function getLandingConfig() {
 
 export default function App() {
   const [billingCycle, setBillingCycle] = useState(DEFAULT_BILLING);
+  const [lightboxImage, setLightboxImage] = useState(null);
   const landing = getLandingConfig();
 
   if (window.location.pathname.startsWith("/welcome")) {
@@ -776,8 +850,12 @@ export default function App() {
   return (
     <main>
       <Header billingCycle={billingCycle} />
-      <Hero billingCycle={billingCycle} landing={landing} />
-      <ProductShowcase landing={landing} />
+      <Hero
+        billingCycle={billingCycle}
+        landing={landing}
+        onOpenImage={setLightboxImage}
+      />
+      <ProductShowcase landing={landing} onOpenImage={setLightboxImage} />
       <PricingSection
         billingCycle={billingCycle}
         setBillingCycle={setBillingCycle}
@@ -788,6 +866,9 @@ export default function App() {
       <FinalCtaSection billingCycle={billingCycle} />
       <Footer />
       <StickyMobileCta billingCycle={billingCycle} />
+      {lightboxImage ? (
+        <ImageLightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
+      ) : null}
     </main>
   );
 }
